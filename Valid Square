@@ -1,0 +1,33 @@
+Valid Square
+
+
+class Solution {
+public:
+    float getdis(vector<int>p1,vector<int>p2){
+         float ans=pow((pow(p1[0]-p2[0],2)+ pow (p1[1]-p2[1],2)),0.5);
+         return ans;
+    }
+    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
+
+       vector<double>ans;
+       ans.push_back(getdis(p1,p2));
+       ans.push_back(getdis(p1,p3));
+       ans.push_back(getdis(p1,p4));
+       ans.push_back(getdis(p2,p3));
+       ans.push_back(getdis(p2,p4));
+       ans.push_back(getdis(p3,p4));
+
+        sort(ans.begin(),ans.end());
+        int count1=0,count2=0;
+        float s=ans[0],ss=ans[5];
+        for(int i=0;i<6;i++){
+            if(ans[i]==s)
+                count1++;
+            if(ans[i]==ss)
+                count2++;
+        }
+        if(count1==4 && count2==2)
+        return true;
+        else return false;
+    }
+};
